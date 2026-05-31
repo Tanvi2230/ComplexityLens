@@ -15,6 +15,16 @@
 
 ---
 
+## 🌐 Live Deployment
+
+| Service | URL |
+|---|---|
+| 🖥️ **Frontend (Vercel)** | https://client-sandy-gamma-13.vercel.app |
+| ⚙️ **Backend API (Railway)** | https://shimmering-creativity-production.up.railway.app |
+| 🗄️ **Database** | Railway PostgreSQL (internal) |
+
+---
+
 ## ✨ What Makes It Different
 
 Most complexity analyzers just *count your loops* and guess. ComplexityLens is different:
