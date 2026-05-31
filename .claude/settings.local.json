@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir server *)",
+      "Bash(npm init *)",
+      "Bash(npm install *)",
+      "Bash(npx prisma *)",
+      "Bash(node index.js)",
+      "Bash(curl http://localhost:5000/)",
+      "Bash(curl -X POST http://localhost:5000/api/analyze -H 'Content-Type: application/json' -d '{\"code\": \"def bubble_sort\\(arr\\):\\\\n    for i in range\\(len\\(arr\\)\\):\\\\n        for j in range\\(len\\(arr\\)-1\\):\\\\n            if arr[j] > arr[j+1]:\\\\n                arr[j], arr[j+1] = arr[j+1], arr[j]\\\\n    return arr\", \"language\": \"python\"}')",
+      "Bash(node -e ' *)",
+      "Bash(curl -s -X POST http://localhost:5000/api/analyze -H 'Content-Type: application/json' -d '{\"code\": \"def bubble_sort\\(arr\\):\\\\n    n = len\\(arr\\)\\\\n    for i in range\\(n\\):\\\\n        for j in range\\(0, n-i-1\\):\\\\n            if arr[j] > arr[j+1]:\\\\n                arr[j], arr[j+1] = arr[j+1], arr[j]\\\\n    return arr\", \"language\": \"python\"}')",
+      "Bash(pkill -f \"node index.js\")",
+      "Bash(curl -s -X POST http://localhost:5000/api/analyze -H 'Content-Type: application/json' -d '{\"code\": \"def bubble_sort\\(arr\\):\\\\n n = len\\(arr\\)\\\\n for i in range\\(n\\):\\\\n for j in range\\(0, n-i-1\\):\\\\n if arr[j] > arr[j+1]:\\\\n arr[j], arr[j+1] = arr[j+1], arr[j]\\\\n return arr\", \"language\": \"python\"}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('Complexity:', d['data']['complexity']\\); print\\('AI:', d['data']['aiExplanation'][:200]\\)\")",
+      "Bash(pkill -f \"node\")",
+      "Bash(python3 -c ' *)",
+      "Bash(cat /tmp/serverlog.txt 2>&1)",
+      "Bash(pkill -f \"node index.js\" 2>/dev/null *)",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(find /mnt/c/Users/hp/ComplexityLens -not -path \"*/node_modules/*\" -type f | head -80)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\hp\\\\ComplexityLens\" -Recurse -File | Where-Object { $_.FullName -notmatch \"node_modules\" } | Select-Object FullName)",
+      "PowerShell(gh --version 2>&1)",
+      "PowerShell($env:RAILWAY_TOKEN = \"56f9fe0c-8a4a-477c-ad6c-be3e5f8efcf6\"; cd \"C:\\\\Users\\\\hp\\\\ComplexityLens\\\\server\"; railway whoami 2>&1)",
+      "PowerShell(cd \"C:\\\\Users\\\\hp\\\\ComplexityLens\\\\server\"; Start-Process powershell -ArgumentList \"-NoExit\", \"-Command\", \"railway login\" -PassThru)"
+    ]
+  }
+}

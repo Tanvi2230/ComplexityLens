@@ -1,0 +1,71 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── USER TABLE ───────────────────────────────────────────────────────────────
+// Stores every registered user
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  // @unique → no two users can have the same email
+  password  String
+  // stores the HASHED password — never plain text
+  avatar    String?
+  // optional profile picture URL
+  createdAt DateTime @default(now())
+
+  // Relations
+  analyses  Analysis[]
+  // One user can have many analyses
+  saved     SavedAnalysis[]
+  // One user can save many analyses
+}
+
+// ─── ANALYSIS TABLE ───────────────────────────────────────────────────────────
+// Updated to link to User
+
+model Analysis {
+  id              String   @id @default(cuid())
+  code            String
+  language        String
+  complexity      String
+  spaceComplexity String
+  timings         Json
+  aiExplanation   String
+  createdAt       DateTime @default(now())
+
+  // Optional user link — analyses can exist without login too
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  // fields: [userId] → the foreign key in THIS table
+  // references: [id] → points to id in User table
+
+  savedBy   SavedAnalysis[]
+}
+
+// ─── SAVED ANALYSIS TABLE ─────────────────────────────────────────────────────
+// When a user bookmarks an analysis
+
+model SavedAnalysis {
+  id         String   @id @default(cuid())
+  note       String?
+  // Optional personal note the user adds when saving
+  createdAt  DateTime @default(now())
+
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // onDelete: Cascade → if user is deleted, their saved analyses are also deleted
+
+  analysisId String
+  analysis   Analysis @relation(fields: [analysisId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, analysisId])
+  // @@unique → a user can only save the same analysis once
+}
